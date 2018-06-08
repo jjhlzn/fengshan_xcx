@@ -1,0 +1,37 @@
+<!--example/login/login.wxml-->
+<view class="page wholePage" xmlns:wx="http://www.w3.org/1999/xhtml">
+
+
+  <view class="page__bd loginDiv">
+    <view >
+     <view class='logoDiv'>
+      <image src='../images/logo.png' class="logo" mode="widthFix"></image>
+
+      </view>
+    </view>
+
+    <view>
+      <view class="input">
+          <input id="username" type="email" placeholder="用户名" bindinput='setUserName' />
+          <span><i class="fa fa-user fa-lg"></i></span>
+      </view>
+      <view class="input">
+          <input id="password" type="password" placeholder="密码" bindinput='setPassword' />
+          <span><i class="fa fa-lock fa-lg"></i></span>
+      </view>
+
+     
+    </view>
+     <view class="weui-btn-area">
+          <button class=" loginButton" bindtap="bindLoginTap">登  陆  </button>
+      </view>
+    
+      
+  </view>
+
+  <view class='bottomDiv bottomLabel'>
+      <label>技术支持：杭州全顺科技有限公司</label>
+  </view>
+
+</view>
+   

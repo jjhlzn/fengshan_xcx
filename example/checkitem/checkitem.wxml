@@ -1,0 +1,68 @@
+<view class="page">
+    <view class="page__bd">
+        <view class="weui-cells__title">验货单属性</view>
+        <view class="weui-cells weui-cells_after-title">
+            <view class="weui-cell" >
+                <view class="weui-cell__bd">发票号</view>
+                <view class="weui-cell__ft">{{contract.ticketNo}}</view>
+            </view>
+            <view class="weui-cell" >
+                <view class="weui-cell__bd">采购合同</view>
+                <view class="weui-cell__ft">{{contract.contractNo}}</view>
+            </view>
+            <view class="weui-cell" >
+                <view class="weui-cell__bd">进仓编号</view>
+                <view class="weui-cell__ft">{{contract.jinCangNo ? contract.jinCangNo : "-"}}</view>
+            </view>
+            <view class="weui-cell" >
+                <view class="weui-cell__bd">跟单员</view>
+                <view class="weui-cell__ft">{{contract.tracker}}</view>
+            </view>
+            <view class="weui-cell" >
+                <view class="weui-cell__bd">验货员</view>
+                <view class="weui-cell__ft">{{contract.checker}}</view>
+            </view>
+            <view class="weui-cell" >
+                <view class="weui-cell__bd">截止时间</view>
+                <view class="weui-cell__ft">{{contract.deadlineDate ? contract.deadlineDate : "未定"}}</view>
+            </view>
+        </view>
+
+        <view class="weui-cells__title">货号</view>
+        <view class="weui-cells weui-cells_after-title">
+            <view url="" data-id="{{item.productNo+'###'+item.spid}}" bindtap="bindProductTap" class="weui-cell weui-cell_access" wx:key="product_1" hover-class="weui-cell_active" wx:for="{{contract.products}}">
+                <view class="weui-cell__bd">{{item.productNo}}({{item.name}})</view>
+                <!-- <view class="weui-cell__ft weui-cell__ft_in-access"></view> -->
+                 <view class="weui-cell__ft weui-cell__ft_in-access" >{{item.checkResult == null ? "未完成" : item.checkResult}}</view>
+            </view>
+            
+        </view>
+        
+        <!--
+        <view class="weui-cells__title">验货结果</view>
+        <view class="weui-cells weui-cells_after-title">
+          <view class="weui-cell">
+            <view class="weui-cell__bd">验货状态</view>
+            <view class="weui-cell__ft">已完成</view>
+          </view>
+          <view class="flex-row weui-cell" style="display: flex;flex-direction: row; align-items: left; justify-content: space-between;">
+            <view class="weui-cell__bd flexCellTitle">验货备注</view>
+            <view class="weui-cell__ft flexCellContent"> 张小龙亲手操刀的微信小程序半年度复盘总结，全都在这里，唯一一份! .... 肯德基的发现，用户在用餐时的心理是求快求好.</view>
+          </view>
+           <view  url="" class="weui-cell weui-cell_access" hover-class="weui-cell_active" bindtap="bindViewImagesTap">
+                <view class="weui-cell__bd">验货图片</view>
+                <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+            </view>
+        </view>
+
+        <view class="weui-btn-area">
+          <button id="checkfile_{{index}}" data-file-id="{{index}}" wx:key="{{index}}" class="weui-btn mini-btn" type="primary" size="mini" plain="true" bindtap="bindFileTap" wx:for="{{checkItem.files}}">验货文件{{index+1}}</button>
+        </view>
+
+        <view class="weui-btn-area" >
+           <button class="weui-btn" type="primary" bindtap="bindCheckTap">整单验货</button>
+        </view>
+
+        -->
+    </view>
+</view>

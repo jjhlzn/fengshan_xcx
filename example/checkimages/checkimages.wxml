@@ -1,0 +1,8 @@
+<view class="img_list">
+    <view wx:for="{{ imgList }}" class="img_wrap" wx:key="{{index}}" >
+        <image src="{{ item.url }}"  id="{{item.url}}" bindtap="bindImageTap" />    
+    </view>
+    
+</view>
+
+

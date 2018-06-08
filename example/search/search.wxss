@@ -1,0 +1,5 @@
+/* search.wxss */
+
+.topview {
+  margin-top: 20px;
+}

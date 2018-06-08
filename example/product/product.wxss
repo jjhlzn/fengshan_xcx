@@ -1,0 +1,10 @@
+/* example/product/product.wxss */
+.flexCellTitle {
+  width: 30%;
+  text-align: left;
+}
+
+.flexCellContent {
+  width: 70%;
+  text-align: right;
+}

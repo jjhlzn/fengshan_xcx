@@ -1,0 +1,71 @@
+<!--search.wxml-->
+<view class="page" xmlns:wx="http://www.w3.org/1999/xhtml">
+    <view class="page__bd">
+
+
+        <view class="weui-cells weui-cells_after-title topview">
+
+          <view class="weui-cell weui-cell_input">
+                <view class="weui-cell__hd">
+                    <view class="weui-label">关键字</view>
+                </view>
+                <view class="weui-cell__bd">
+                    <input class="weui-input" bindinput='bindTicketNoInput' value="{{ticketNo}}" placeholder=""/>
+                </view>
+            </view>
+
+          <view class="weui-cell weui-cell_input">
+              <view class="weui-cell__hd">
+                  <view class="weui-label">开始日期</view>
+              </view>
+              <view class="weui-cell__bd">
+                  <picker mode="date" value="{{startDate}}"  bindchange="bindStartDateChange">
+                      <view class="weui-input">{{startDate}}</view>
+                  </picker>
+              </view>
+          </view>
+
+          <view class="weui-cell weui-cell_input">
+              <view class="weui-cell__hd">
+                  <view class="weui-label">结束日期</view>
+              </view>
+              <view class="weui-cell__bd">
+                  <picker mode="date" value="{{endDate}}"  bindchange="bindEndDateChange">
+                      <view class="weui-input">{{endDate}}</view>
+                  </picker>
+              </view>
+          </view>
+
+          <view class="weui-cell weui-cell_select">
+            <view class="weui-cell__hd weui-cell__hd_in-select-after">
+                <view class="weui-label">状态</view>
+            </view>
+            <view class="weui-cell__bd">
+                <picker bindchange="bindStatusChange" value="{{statusIndex}}" range="{{statusNames}}">
+                    <view class="weui-select weui-select_in-select-after">{{statuses[statusIndex].name}}</view>
+                </picker>
+            </view>
+          </view>
+
+          <view class="weui-cell weui-cell_select" wx:if="{{isShowSelectChecker}}">
+              <view class="weui-cell__hd weui-cell__hd_in-select-after">
+                  <view class="weui-label">验货员</view>
+              </view>
+              <view class="weui-cell__bd">
+                  <picker bindchange="bindCheckerChange" value="{{checkerIndex}}" range="{{checkerNames}}">
+                      <view class="weui-select weui-select_in-select-after">{{checkers[checkerIndex].name}}</view>
+                  </picker>
+              </view>
+          </view>
+           
+
+        </view>
+
+        <view class="weui-btn-area">
+            <button class="weui-btn" type="primary" hover-class='other-button-hover'   bindtap="bindSearchTap">查找</button>
+        </view>
+    </view>
+
+
+
+</view>

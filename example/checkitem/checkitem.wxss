@@ -1,0 +1,14 @@
+/* checkitem.wxss */
+.mini-btn {
+  margin-right: 5px;
+}
+
+.flexCellTitle {
+  width: 30%;
+  text-align: left;
+}
+
+.flexCellContent {
+  width: 70%;
+  text-align: right;
+}

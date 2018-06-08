@@ -1,0 +1,31 @@
+.contractNo {
+  margin-top: 10px;
+}
+
+/* checkitem.wxss */
+.mini-btn {
+  margin-right: 5px;
+}
+
+.flexCellTitle {
+  width: 30%;
+  text-align: left;
+}
+
+.flexCellContent {
+  width: 70%;
+  text-align: right;
+}
+
+.weui-panel__bd .rowTitle {
+  background-color: lightgray;
+}
+
+.twoRowCell {
+  padding-top: 12px;
+}
+
+.checkItemCellRight {
+   width: 60%;
+   text-align: right;
+}

@@ -1,0 +1,73 @@
+<view class="page">
+    <view class="page__bd">
+      <view class="weui-panel weui-panel_access">
+          
+
+          <view class="weui-panel__bd">
+
+            <view class=" weui-media-box weui-media-box_text myrow2">
+                  <view class="flex-row myrow myrow2">
+                    <view class="flex-view-item mybutton"> <button class="{{selectedType == '全部'? 'selectedButton' : ''}}" bindtap="allTap">全部 </button></view>
+                    <view class="flex-view-item mybutton"> <button class="{{selectedType == '合格'? 'selectedButton' : ''}}" bindtap="qualifyTap">合格 </button>  </view>
+                    <view class="flex-view-item mybutton"> <button class="{{selectedType == '不合格'? 'selectedButton' : ''}}" bindtap="notQualifyTap">不合格 </button>  </view>
+                    <view class="flex-view-item mybutton .mybutton"> <button class="{{selectedType == '待定'? 'selectedButton' : ''}}" bindtap="tbdTap"> 待定 </button>  </view>
+                     <view class="flex-view-item mybutton .mybutton-rightest"> <button  bindtap="bindRecheckTap"> 重新验货 </button>  </view>
+                  </view>
+              </view>
+
+            <view class=" weui-media-box weui-media-box_text">
+                  <view class="flex-row myrow" >
+                    <view class="flex-view-item firstColumn" > 
+                         <view style="flex-direction:column;">
+                            <view class="flex-view-item ">发票号</view>
+                            <view class="flex-view-item ">货号</view>
+                          </view>
+                    </view>
+                     <view class="flex-view-item twoRowCell secondColumn"> 
+                        <p>验货结果</p>
+                    </view>
+                     <view class="flex-view-item checkItemCellRight"> 
+                        <p ></p>
+                    </view>
+                  </view>
+            </view>
+
+            <view   bindtap="bindItemTap"  class=" weui-media-box weui-media-box_text" data-id="{{item.productNo+'###'+item.spid}}"   wx:for="{{products}}" wx:key="item_{{index}}">
+                <view class="flex-row myrow">
+                  <view class="flex-view-item firstColumn" > 
+                        <view style="flex-direction:column;">
+                          <view class="flex-view-item ">{{item.ticketNo}}</view>
+                          <view class="flex-view-item ">{{item.productNo}}</view>
+                        </view>
+                  </view>
+                  <view class="flex-view-item twoRowCell secondColumn"> 
+                     {{item.checkResult == null ? "未验货" : item.checkResult}}
+                  </view>
+                  <view class="flex-view-item checkItemCellRight" > 
+                        <view style="flex-direction:column;">
+                          <view class="flex-view-item ">验货员 <span class="peopleName">{{item.checker}}</span></view>
+                          <view class="flex-view-item ">跟单员  <span class="peopleName">{{item.tracker}}</span></view>
+                        </view>
+                  </view>
+                </view>
+            </view>
+
+            <view > 
+              <view class="weui-loadmore" wx:if="{{loading}}">
+                  <view class="weui-loading"></view>
+                  <view class="weui-loadmore__tips">正在加载</view>
+              </view>
+            </view>
+       
+            
+            
+        </view>
+
+         <view class="weui-panel__bd" wx:if="{{!loading && (products.length === 0)}}">
+              <view class="weui-loadmore weui-loadmore_line noDataCell">
+                  <view class="weui-loadmore__tips weui-loadmore__tips_in-line">暂无数据</view>
+              </view>
+          </view>
+      </view>
+    </view>
+</view>

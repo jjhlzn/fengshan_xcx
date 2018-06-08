@@ -1,0 +1,63 @@
+<view class="page">
+    <view class="page__bd">
+   
+            <view class="weui-cells weui-cells_after-title">
+              <view class=" weui-media-box weui-media-box_text">
+                    <view class="flex-row" style="display: flex;flex-direction: row; align-items: left; justify-content: space-between;">
+                      <view class="flex-view-item"> 发票号   {{checkOrder.ticketNo}}</view>
+                    </view>
+                    <view class="flex-row" style="display: flex;flex-direction: row; align-items: left; justify-content: space-between;">
+                      <view class="flex-view-item checkItemCellLeft"> 采购合同号 </view>
+                    </view>  
+              </view>
+
+              <view bindtap="bindItemTap"  data-id="{{item.contractNo}}" class=" weui-media-box weui-media-box_text"                        wx:for="{{contracts}}" wx:key="item_{{index}}" >
+                <view class="flex-row myrow">
+                    <view class="flex-view-item twoRowCell"> 
+                        {{item.contractNo}}
+                    </view>
+                    <view class="flex-view-item checkItemCellRight" > 
+                          <view style="flex-direction:column;">
+                            <view class="flex-view-item"> 验货员 <span class="peopleName">{{item.checker == null ? "未知" : item.checker}}</span></view>
+                            <view class="flex-view-item ">跟单员 <span class="peopleName">{{item.tracker == null ? "未知" : item.tracker}}</span></view>
+                          </view>
+                    </view>
+                  </view>
+              </view>
+            </view>
+           
+
+            <view class="weui-cells__title">验货结果</view>
+            <view class="weui-cells weui-cells_after-title">
+              <view class="weui-cell">
+                <view class="weui-cell__bd">验货状态</view>
+                <view class="weui-cell__ft">{{!checkOrder.checkResult || checkOrder.checkResult == 'null'  ? "未验货" : checkOrder.checkResult}}</view>
+              </view>
+              <view class="flex-row weui-cell" style="display: flex;flex-direction: row; align-items: left; justify-content: space-between;">
+                <view class="weui-cell__bd flexCellTitle">验货备注</view>
+                <view class="weui-cell__ft flexCellContent"> {{!checkOrder.checkMemo || checkOrder.checkMemo == 'null' ?  "" : checkOrder.checkMemo}}</view>
+              </view>
+              
+              <!--
+              <view  url="" class="weui-cell weui-cell_access" hover-class="weui-cell_active" bindtap="bindViewImagesTap">
+                    <view class="weui-cell__bd">验货图片</view>
+                    <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+              </view> -->
+            </view>  
+
+            <!--
+            <view class="weui-btn-area">
+              <button id="checkfile_{{index}}" data-file-id="{{index}}" wx:key="{{index}}" class="weui-btn mini-btn" type="primary" size="mini" plain="true" bindtap="bindFileTap" wx:for="{{checkItem.files}}">验货文件{{index+1}}</button>
+            </view> -->
+
+           
+            <view class="weui-btn-area" >
+              <button class="weui-btn" type="primary" hover-class='other-button-hover'  bindtap="bindCheckTap">整单验货</button>
+            </view> 
+
+            <view class="weui-btn-area" >
+              <button type="default" hover-class='other-button-hover'  bindtap="bindModifyChecker">修改验货员</button>
+            </view> 
+            
+          </view>
+</view>

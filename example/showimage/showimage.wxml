@@ -1,0 +1,2 @@
+
+<image style="width: 100%;" class="weui-uploader__img" src="{{checkItem.imageUrl}}" mode="widthFix" bindload="bindImageLoadSuccess" binderror="bindImageLoadError" />

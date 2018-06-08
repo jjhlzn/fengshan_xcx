@@ -1,0 +1,31 @@
+/* checklist.wxss */
+.checkItemCell {
+  width: 33%;
+}
+
+.checkItemCellCenter {
+  width: 30%;
+  text-align: center;
+}
+
+.checkItemCellLeft {
+  width: 37%;
+   text-align: left;
+}
+
+.checkItemCellRight {
+  width: 43%;
+   text-align: right;
+}
+
+.loadAllCell {
+  margin-top: 10px;
+  height: 10px;
+}
+
+.noDataCell {
+  margin-top: 30px;
+  height: 10px;
+  margin-bottom: 20px;
+}
+

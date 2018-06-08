@@ -1,0 +1,18 @@
+<view class="weui-cells__title">选择验货员</view>
+<view class="weui-cells weui-cells_after-title">
+  
+  <view class="weui-cell weui-cell_select">
+      <view class="weui-cell__hd weui-cell__hd_in-select-after">
+          <view class="weui-label">验货员</view>
+      </view>
+      <view class="weui-cell__bd">
+          <picker bindchange="bindCheckerChange" value="{{checkerIndex}}" range="{{checkerNames}}">
+              <view class="weui-select weui-select_in-select-after">{{checkers[checkerIndex].name}}</view>
+          </picker>
+      </view>
+  </view>
+</view>
+
+ <view class="weui-btn-area">
+      <button class="weui-btn" type="primary" hover-class='other-button-hover' bindtap="bindSaveTap">保存</button>
+  </view>
