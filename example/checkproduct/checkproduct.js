@@ -5,6 +5,7 @@ import { checkPermission } from '../model/user.js';
 
 Page({
   data: {
+    startDate: '2018-03-01',
     maxUploadCount: 3,
     lock: false,     
     uploadedCount: 0,
@@ -28,74 +29,6 @@ Page({
   },
 
   onLoad: function (options) {
-    console.log('options: ' + JSON.stringify(options))
-
-    this.setData({
-      ticketNo: options.ticketNo,
-      contractNo: options.contractNo,
-      productNo: options.productNo,
-      spid: options.spid
-    })
-
-    var self = this;
-    console.log("onload");
-    wx.showLoading({
-      title: '加载中',
-    })
-    wx.request({
-      url: service.getProductInfoUrl(),
-      data: {
-        ticketNo: self.data.ticketNo,
-        contractNo: self.data.contractNo,
-        productNo: self.data.productNo,
-        spid: self.data.spid
-      },
-      header: {
-        'content-type': 'application/json'
-      },
-      complete: function (res) {
-        wx.hideLoading()
-        console.log(res);
-        if (res.data.status != 0) {
-          wx.showToast({
-            title: '加载失败',
-          })
-          return;
-        }
-
-        let found = false;
-        self.data.radioItems.forEach( item => {
-          if (item.value == res.data.product.checkResult) {
-            item.checked = true;
-            found = true;
-          } else {
-            delete item.checked;
-          }
-        });
-
-        if (!found) {
-          self.data.radioItems[2].checked = true; 
-        }
-
-        let sizeObj = utils.extractSize(res.data.product.boxSize);
-        res.data.product.sizeObj = sizeObj;
-
-        let files = res.data.product.pictureUrls;
-        let urls = files.map(file => service.makeImageUrl(file));
-        self.setData({
-          product: res.data.product,
-          files: urls,
-          radioItems: self.data.radioItems
-        })
-        
-      },
-      fail: function (err) {
-        wx.hideLoading()
-        wx.showToast({
-          title: '加载失败',
-        })
-      }
-    })
   },
 
   setPickCount: function(e) {
@@ -125,7 +58,7 @@ Page({
    */
   onShow: function () {
     wx.setNavigationBarTitle({
-      title: '验货',
+      title: '新增订单',
     })
     checkPermission()
   },

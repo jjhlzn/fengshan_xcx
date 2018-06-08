@@ -1,6 +1,6 @@
 // notchecklist.js
 let service = require('../service').Service
-let utils = require('../utils.js').utils;
+let utils = require('../utils').utils;
 import { checkPermission } from '../model/user.js';
 let loadData = require('../dataloader').loadData
 let getMoreData = require('../dataloader').getMoreData
@@ -9,12 +9,13 @@ let moment = require('../lib/moment.js');
 
 Page({
 
+
   /**
    * 页面的初始数据
    */
   data: {
     loading: false,
-    status: '未分配',
+    status: '未验货',
     totalCount: 0,
     items: [],
     request: {
@@ -27,11 +28,21 @@ Page({
       startDate: '',
       endDate: '',
       ticketNo: '',
-      hasChecked: false
-    }
+      hasChecked: false,
+      checker: "-1"
+    },
+
+    statusList: [
+      { id: 1, name: '雕刻', isFinished: true },
+      { id: 2, name: '打磨', isFinished: true },
+      { id: 3, name: '油漆', isFinished: true },
+      { id: 4, name: '描字', isFinished: true },
+      { id: 5, name: '发货', isFinished: false },
+      { id: 6, name: '完成', isFinished: false },
+    ]
   },
 
-  removeItem: function(ticketNo) {
+  removeItem: function (ticketNo) {
     let items = this.data.items;
     console.log(this.data.items);
     let index = -1;
@@ -42,9 +53,7 @@ Page({
     });
     if (index != -1) {
       items.splice(index, 1);
-      this.setData({ items: items, totalCount: this.data.totalCount - 1});
-      //让待验货列表重新刷新
-      wx.setStorageSync(utils.isNeedReloadNotCheckListKey, true);
+      this.setData({ items: items });
     }
   },
 
@@ -59,10 +68,10 @@ Page({
         startDate: startDate,
         endDate: endDate,
         ticketNo: "",
-        hasChecked: false
+        hasChecked: false,
+        checker: "-1"
       }
     });
-
   },
 
 
@@ -72,28 +81,20 @@ Page({
   onReady: function () {
     checkPermission();
     loadData(this, 0)
-    
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    utils.onShowHandler(this, null, reset, loadData);
+    utils.onShowHandler(this, utils.isNeedReloadNotCheckListKey, reset, loadData);
 
     wx.setNavigationBarTitle({
-      title: '待分配列表',
-    })
-
-    wx.setTabBarStyle({
-      color: "#6d6d6d",
-      selectedColor: '#3AA5C8',
-      backgroundColor: '#FEFFFF',
-      borderStyle: 'black'
+      title: '订单列表',
     })
   },
 
-  
+
   /**
    * 页面上拉触底事件的处理函数
    */
@@ -113,7 +114,7 @@ Page({
   },
 
   getItem(ticketNo) {
-    for (var i = 0; i < this.data.items.length; i++) {
+    for(var i = 0; i < this.data.items.length; i++) {
       if (this.data.items[i].ticketNo == ticketNo) {
         return this.data.items[i];
       }
@@ -121,24 +122,43 @@ Page({
     return null;
   },
 
-  bindItemTap: function (e) {
+  bindItemTap: function(e) {
 
     let id = e.currentTarget.dataset.id;
 
     let item = this.getItem(id);
     console.log("item:", item);
     if (item) {
-      wx.navigateTo({
-        url: '../assignchecker/assignchecker?id=' + id,
-      })
-
+        wx.navigateTo({
+          url: '../contractsofitem/contractsofitem?id=' + id+'&checkResult='
+          +item.checkResult+'&checkMemo='+item.checkMemo,
+        })
     }
   },
 
   bindSearchTap: function (e) {
     this.data.queryParams.status = this.data.status;
+    console.log("in find bindSearchTap:")
+    console.log(JSON.stringify(this.data.queryParams))
     wx.navigateTo({
       url: '../search/search?queryparams=' + JSON.stringify(this.data.queryParams),
     })
+  },
+
+  bindStatusTap: function(e) {
+    let id = e.currentTarget.dataset.id;
+    console.log('tap status: ' + id)
+    wx.showModal({
+      title: '设置' + id + '完成?',
+      success: function (res) {
+        if (res.confirm) {
+          console.log('用户点击确定')
+        } else if (res.cancel) {
+          console.log('用户点击取消')
+        }
+      }
+    })
   }
+
+
 })

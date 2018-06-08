@@ -30,7 +30,7 @@ Page({
    */
   onShow: function () {
     wx.setNavigationBarTitle({
-      title: '验货小程序'
+      title: '风尚订单系统'
     })
   },
 
@@ -127,7 +127,7 @@ Page({
         }
         wx.setStorageSync('loginUser', res.data.user)
         wx.reLaunch({
-          url: '../assignlist/assignlist',
+          url: '../notchecklist/notchecklist',
         });
       },
       fail: function(res) {

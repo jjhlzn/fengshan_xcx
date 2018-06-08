@@ -23,7 +23,7 @@ Page({
       console.log('loginUser: ', loginUser);
       if (loginUser) {
         wx.reLaunch({
-          url: './assignlist/assignlist',
+          url: './orderlist/orderlist',
         });
       } else {
         wx.redirectTo({

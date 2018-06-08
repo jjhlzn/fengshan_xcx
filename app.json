@@ -2,21 +2,12 @@
   "pages": [
     "example/index",
     "example/login/login",
-    "example/notchecklist/notchecklist",
+    "example/orderlist/orderlist",
     "example/checkitem/checkitem",
-    "example/check/check",
-    "example/uploadimage/uploadimage",
-    "example/showimage/showimage",
-    "example/showdocument/showdocument",
-    "example/checklist/checklist",
     "example/me/me",
-    "example/checkimages/checkimages",
     "example/search/search",
-    "example/assignchecker/assignchecker",
     "example/checkproduct/checkproduct",
     "example/product/product",
-    "example/editproductproperty/editproductproperty",
-    "example/assignlist/assignlist",
     "example/notcompletelist/notcompletelist",
     "example/contractsofitem/contractsofitem",
     "example/contractsofitem2/contractsofitem2"
@@ -24,29 +15,16 @@
   "tabBar": {
     "list": [
       {
-        "pagePath": "example/assignlist/assignlist",
-        "iconPath": "example/icons/1_2.png",
-        "selectedIconPath": "example/icons/1.png",
-        "text": "待分配",
-        "color": "red"
-      },
-      {
-        "pagePath": "example/notchecklist/notchecklist",
+        "pagePath": "example/orderlist/orderlist",
         "iconPath": "example/icons/2_2.png",
         "selectedIconPath": "example/icons/2.png",
-        "text": "待验货"
+        "text": "订单"
       },
       {
-        "pagePath": "example/notcompletelist/notcompletelist",
+        "pagePath": "example/checkproduct/checkproduct",
         "iconPath": "example/icons/3_2.png",
         "selectedIconPath": "example/icons/3.png",
-        "text": "未完成"
-      },
-      {
-        "pagePath": "example/checklist/checklist",
-        "iconPath": "example/icons/4_2.png",
-        "selectedIconPath": "example/icons/4.png",
-        "text": "已验货"
+        "text": "新增"
       },
       {
         "pagePath": "example/me/me",

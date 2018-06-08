@@ -2,75 +2,42 @@
    
     <view class="page__bd">
 
-        <view class="weui-cells__title">验货结果</view>
-        <view class="weui-cells weui-cells_after-title">
-            <radio-group bindchange="radioChange">
-                <label class="weui-cell weui-check__label" wx:for="{{radioItems}}" wx:key="value">
-                    <radio class="weui-check" value="{{item.value}}" checked="{{item.checked}}"/>
-
-                    <view class="weui-cell__bd">{{item.name}}</view>
-                    <view class="weui-cell__ft weui-cell__ft_in-radio" wx:if="{{item.checked}}">
-                        <icon class="weui-icon-radio" type="success_no_circle" size="16"></icon>
-                    </view> 
-                </label>
-            </radio-group>
-        </view>
         
-        <view class="weui-cells__title"> 验货属性 </view>
+        
+        <view class="weui-cells__title"> 订单属性 </view>
         <view class="weui-cells weui-cells_after-title">
-            <view class="weui-cell">
-                <view class="weui-cell__bd">总箱数</view>
-                <view class="weui-cell__ft">
-                  {{product.totalCount}}
-                </view>
-            </view>
-
-            <view class="weui-cell">
-                <view class="weui-cell__bd">抽箱数</view>
-                <view class="weui-cell__ft">
-                  <input  placeholder="" value="{{product.pickCount}}" bindinput="setPickCount"/>
-                </view>
-            </view>
-            <view class="weui-cell">
-                <view class="weui-cell__bd">外箱尺寸</view>
-                <view class="weui-cell__ft">
-                  <input style='width: 40px; border: solid 1px lightgray; float: left;text-align:center;' type="number" placeholder=""
-                   value="{{product.sizeObj.long != 0 ? product.sizeObj.long : ''}}" bindinput="setLong"/> 
-                    <p style='width: 34px; float: left; text-align:center;'> x </p>
-                   <input style='width: 40px; border: solid 1px lightgray; float: left;text-align:center' type="number" placeholder="" 
-                   value="{{product.sizeObj.width != 0 ? product.sizeObj.width : ''}}" bindinput="setWidth"/> 
-                    <p style='width: 34px; float: left; text-align:center;'> x </p>
-                   <input style='width: 40px; border: solid 1px lightgray; float: left;text-align:center' type="number" placeholder="" 
-                   value="{{product.sizeObj.height != 0 ? product.sizeObj.height : ''}}" bindinput="setHeight"/> 
-                    <p style='width: 30px; float: left; text-align:right;'> cm </p>
-                </view>
-            </view>
-            <view class="weui-cell">
-                <view class="weui-cell__bd">单件毛重</view>
+            <view class="weui-cell line">
+                <view class="weui-cell__bd">产品名称</view>
                 <view class="weui-cell__ft">
                   <input  placeholder="" value="{{product.grossWeight}}" bindinput="setGrossWeight"/>
                 </view>
             </view>
-            <view class="weui-cell">
-                <view class="weui-cell__bd">单件净重</view>
-                <view class="weui-cell__ft">
-                  <input  placeholder="" value="{{product.netWeight}}" bindinput="setNetWeight"/>
-                </view>
+
+            <view class="weui-cell line">
+                <view class="weui-cell__bd">
+                  <view class="weui-label">交货日期</view>
+              </view>
+              <view class="weui-cell__ft">
+                  <picker mode="date" value="{{startDate}}"  bindchange="bindStartDateChange">
+                      <view class="weui-input">{{startDate}}</view>
+                  </picker>
+              </view>
             </view>
+
         </view>
 
-         <view class="weui-cells__title">描述</view>
+         <view class="weui-cells__title">备注</view>
         <view class="weui-cells weui-cells_after-title">
             <view class="weui-cell">
                 <view class="weui-cell__bd">
-                    <textarea class="weui-textarea" placeholder="请输入验货备注" value="{{product.checkMemo ? product.checkMemo : ''}}" style="height: 3.3em" bindinput="setCheckMemo"/>
+                    <textarea class="weui-textarea" placeholder="请输入订单备注" value="{{product.checkMemo ? product.checkMemo : ''}}" style="height: 3.3em" bindinput="setCheckMemo"/>
                     <!--<view class="weui-textarea-counter">0/200</view> -->
                 </view>
             </view>
         </view>
 
 
-        <view class="weui-cells__title">图片上传</view>
+        <view class="weui-cells__title">附件上传</view>
         <view class="weui-cells weui-cells_after-title">
             <view class="weui-cell">
                 <view class="weui-uploader__bd">

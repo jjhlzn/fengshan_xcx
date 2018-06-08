@@ -1,1 +1,5 @@
 /* checkproduct.wxss */
+
+.line {
+  height: 36px;
+}
