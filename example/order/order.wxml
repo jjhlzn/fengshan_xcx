@@ -1,0 +1,75 @@
+<view class="page" xmlns:wx="http://www.w3.org/1999/xhtml">
+   
+    <view class="page__bd">
+
+        
+        
+        <view class="weui-cells__title"> 订单属性 </view>
+        <view class="weui-cells weui-cells_after-title">
+            <view class="weui-cell line">
+                <view class="weui-cell__bd">订单名称</view>
+                <view class="weui-cell__ft">
+                 {{product.grossWeight}}
+                </view>
+            </view>
+
+            <view class="weui-cell line">
+                <view class="weui-cell__bd">金额</view>
+                <view class="weui-cell__ft">
+                  {{product.grossWeight}}
+                </view>
+            </view>
+
+            <view class="weui-cell line">
+                <view class="weui-cell__bd">
+                  <view class="weui-label">下单日期</view>
+              </view>
+              <view class="weui-cell__ft">
+                  2018-03-01
+              </view>
+            </view>
+
+            <view class="weui-cell line">
+                <view class="weui-cell__bd">
+                  <view class="weui-label">交货日期</view>
+              </view>
+              <view class="weui-cell__ft">
+                  2018-03-01
+              </view>
+            </view>
+
+        </view>
+
+         <view class="weui-cells__title">备注</view>
+        <view class="weui-cells weui-cells_after-title">
+            <view class="weui-cell">
+                <view class="weui-cell__bd">
+                    这是备注信息
+                </view>
+            </view>
+        </view>
+
+
+        <view class="weui-cells__title">附件</view>
+        <view class="weui-cells weui-cells_after-title">
+            <view class="weui-cell">
+                <view class="weui-uploader__bd">
+                            <view class="weui-uploader__files" id="uploaderFiles">
+                                 <block wx:for="{{files}}" wx:key="*this">
+                                    <view class="weui-uploader__file" bindtouchend='touchend' bindlongtap='bindLongImageTap' bindtap="previewImage" id="image_{{index}}">
+                                        <image  class="weui-uploader__img" src="{{item}}" mode="aspectFill" />
+                                    </view>
+                                </block>
+
+                              <view class="weui-uploader__input-box">
+                                <view class="weui-uploader__input" bindtap="chooseImage"></view>
+                              </view>
+                            </view>
+                            
+                        </view>
+            </view>
+        </view>
+
+      
+    </view>
+</view>

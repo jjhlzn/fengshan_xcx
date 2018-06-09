@@ -7,7 +7,14 @@
         <view class="weui-cells__title"> 订单属性 </view>
         <view class="weui-cells weui-cells_after-title">
             <view class="weui-cell line">
-                <view class="weui-cell__bd">产品名称</view>
+                <view class="weui-cell__bd">订单名称</view>
+                <view class="weui-cell__ft">
+                  <input  placeholder="" value="{{product.grossWeight}}" bindinput="setGrossWeight"/>
+                </view>
+            </view>
+
+            <view class="weui-cell line">
+                <view class="weui-cell__bd">金额</view>
                 <view class="weui-cell__ft">
                   <input  placeholder="" value="{{product.grossWeight}}" bindinput="setGrossWeight"/>
                 </view>

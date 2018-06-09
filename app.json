@@ -6,31 +6,35 @@
     "example/checkitem/checkitem",
     "example/me/me",
     "example/search/search",
-    "example/checkproduct/checkproduct",
+    "example/neworder/neworder",
     "example/product/product",
     "example/notcompletelist/notcompletelist",
     "example/contractsofitem/contractsofitem",
-    "example/contractsofitem2/contractsofitem2"
+    "example/contractsofitem2/contractsofitem2",
+    "example/order/order"
   ],
   "tabBar": {
     "list": [
       {
         "pagePath": "example/orderlist/orderlist",
-        "iconPath": "example/icons/2_2.png",
-        "selectedIconPath": "example/icons/2.png",
-        "text": "订单"
+        "iconPath": "example/images/order_n.png",
+        "selectedIconPath": "example/images/order_y.png",
+        "text": "订单",
+        "selectedColor": "#41a5c6"
       },
       {
-        "pagePath": "example/checkproduct/checkproduct",
-        "iconPath": "example/icons/3_2.png",
-        "selectedIconPath": "example/icons/3.png",
-        "text": "新增"
+        "pagePath": "example/neworder/neworder",
+        "iconPath": "example/images/add_order_n.png",
+        "selectedIconPath": "example/images/add_order_y.png",
+        "text": "新增",
+        "selectedColor": "#41a5c6"
       },
       {
         "pagePath": "example/me/me",
-        "iconPath": "example/icons/me.png",
-        "selectedIconPath": "example/icons/me2.png",
-        "text": "我"
+        "iconPath": "example/images/user_n.png",
+        "selectedIconPath": "example/images/user_y.png",
+        "text": "我",
+        "selectedColor": "#41a5c6"
       }
     ]
   },

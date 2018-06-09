@@ -13,8 +13,8 @@
       </view>
 
       <view class="weui-cell">
-          <view class="weui-cell__bd">权限</view>
-          <view class="weui-cell__ft">{{loginUser.roleName}}</view>
+          <view class="weui-cell__bd">版本号</view>
+          <view class="weui-cell__ft">1.0.0</view>
       </view>
 
 

@@ -125,15 +125,10 @@ Page({
   bindItemTap: function(e) {
 
     let id = e.currentTarget.dataset.id;
-
-    let item = this.getItem(id);
-    console.log("item:", item);
-    if (item) {
-        wx.navigateTo({
-          url: '../contractsofitem/contractsofitem?id=' + id+'&checkResult='
-          +item.checkResult+'&checkMemo='+item.checkMemo,
-        })
-    }
+    wx.navigateTo({
+      url: '../order/order'
+    })
+    
   },
 
   bindSearchTap: function (e) {

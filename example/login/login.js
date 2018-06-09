@@ -127,7 +127,7 @@ Page({
         }
         wx.setStorageSync('loginUser', res.data.user)
         wx.reLaunch({
-          url: '../notchecklist/notchecklist',
+          url: '../orderlist/orderlist',
         });
       },
       fail: function(res) {
