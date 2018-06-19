@@ -37,15 +37,14 @@ let loadData = function (page, pageNo) {
   self.setData({ loading: true });
   self.data.loading = true;
   wx.request({
-    url: service.getCheckOrdersUrl(),
+    url: service.getOrdersUrl(),
+    method: 'POST',
     data: {
       pageNo: self.data.request.pageNo,
       pageSize: self.data.request.pageSize,
       startDate: self.data.queryParams.startDate,
       endDate: self.data.queryParams.endDate,
-      ticketNo: self.data.queryParams.ticketNo,
-      checker: self.data.queryParams.checker ? self.data.queryParams.checker : "-1",
-      status: self.data.status,
+      keyword: self.data.queryParams.keyword,
       username: utils.getMyUserName()
     },
     header: {

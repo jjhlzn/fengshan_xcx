@@ -21,11 +21,11 @@
  
                  
                  <!-- 每个列表项 -->  
-                <view  data-id="{{item.ticketNo}}"  class="weui-media-box weui-media-box_text" wx:for="{{items}}" wx:key="item_{{index}}">     
-                    <view  data-id="{{item.ticketNo}}" bindtap='bindItemTap'  class="flex-row flex-row-attrs" >
+                <view  data-id="{{item.orderNo}}"  class="weui-media-box weui-media-box_text" wx:for="{{items}}" wx:key="item_{{index}}">     
+                    <view  data-id="{{item.orderNo}}" bindtap='bindItemTap'  class="flex-row flex-row-attrs" >
                       <view class="flex-column flex-column-attrs  ">
-                        <view class="flex-view-item name-txt">袖珍农场3块 </view>
-                        <view class="flex-view-item number-txt">G00041</view>
+                        <view class="flex-view-item name-txt">{{item.orderName}} </view>
+                        <view class="flex-view-item number-txt">{{item.orderNo}}</view>
                       </view>
 
                       <view class="flex-view-item checkItemCellRight" style=''> 
@@ -34,7 +34,7 @@
                     </view>  
                     
                      <scroll-view class="scroll-view_H" scroll-x >
-                      <view  data-id="status_{{item.ticketNo}}"  wx:for="{{statusList}}" wx:key="status_{{index}}"  class=" scroll-view-item_H bc_green">     
+                      <view  wx:for="{{item.flow.statusList}}" wx:key="status_{{index}}"  class=" scroll-view-item_H bc_green">     
                         <view class="flex-row flex-row-attrs">
                           <view class="flex-column flex-column-attrs checkItemCellLeft">
                             <image data-id="{{item.name}}" bindtap='bindStatusTap' src="../images/{{item.isFinished ? 'blue.png' : 'gray.png'}}" class="status-image flex-view-item"></image>

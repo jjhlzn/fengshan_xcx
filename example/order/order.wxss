@@ -1,4 +1,53 @@
 /* example/order/order.wxss */
 .line {
-  height: 36px;
+  height: 26px;
+}
+
+.scroll-view_H{
+  width: 100%;
+  white-space: nowrap;
+}
+.scroll-view-item_H{
+  margin-top: 18px;
+  margin-bottom: 15px;
+  margin-left: 10px;
+  width: 80px;
+  height: 70px;
+  display: inline-block;
+}
+
+
+.forword-image {
+  width: 16px;
+  height: 16px;
+}
+
+.status-image {
+  width: 44px;
+  height: 44px;
+}
+
+.status-txt {
+  margin-left: 10px;
+  font-size: 13px;
+  margin-top: 5px;
+  color: grey;
+}
+
+.arrow-image {
+  width: 20px;
+  height: 20px;
+  padding-bottom: 15px;
+  padding-right: 10px;
+}
+
+.flex-row-attrs {
+  display: flex; 
+  flex-direction: row; 
+  align-items: center; 
+  justify-content: space-between;
+}
+
+.flex-column-attrs {
+  display: flex; flex-direction: column; align-items: left; justify-content: space-between;
 }

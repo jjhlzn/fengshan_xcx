@@ -35,30 +35,9 @@ Page({
   },
 
   /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-  
-  },
-
-  /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-  
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
   
   },
 
@@ -67,13 +46,6 @@ Page({
    */
   onPullDownRefresh: function () {
     wx.stopPullDownRefresh()
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-  
   },
 
   setUserName: function(e) {
@@ -94,11 +66,12 @@ Page({
     wx.request({
       url: service.loginUrl(), //仅为示例，并非真实的接口地址
       data: {
-        request: {
+        
           a: this.data.username,
           b: this.data.password
-        }
+        
       },
+      method: 'POST',
       header: { 
         'content-type': 'application/json'
       },
@@ -120,11 +93,6 @@ Page({
           return;
         }
         let user = res.data.user;
-        if (user.role == 'checker') {
-          user.roleName = '验货员';
-        } else if (user.role == 'checker_manager') {
-          user.roleName = '验货管理员';
-        }
         wx.setStorageSync('loginUser', res.data.user)
         wx.reLaunch({
           url: '../orderlist/orderlist',

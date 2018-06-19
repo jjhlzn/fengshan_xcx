@@ -10,7 +10,25 @@ let utils = {
   getMyUserName: getMyUserName,
   extractSize: extractSize,
   isCheckerManager: isCheckerManager,
+  checkAndSetOrderFinished: checkAndSetOrderFinished,
 };
+
+function checkAndSetOrderFinished(order) {
+  var isFinished = true;
+  order.flow.statusList.forEach(status => {
+    if (status.name !== '完成') {
+      isFinished = isFinished && status.isFinished;
+    }
+  })
+
+  order.flow.statusList.forEach(status => {
+    if (status.name === '完成') {
+      status.isFinished = isFinished;
+    } 
+  })
+  
+  return isFinished;
+}
 
 function isFloat(value) {
   if (!isNumeric(value))

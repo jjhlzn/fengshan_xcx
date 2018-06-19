@@ -49,6 +49,13 @@ Page({
     wx.setNavigationBarTitle({
       title: '商品',
     })
+
+    wx.setTabBarStyle({
+      color: "#6d6d6d",
+      selectedColor: '#41a5c6',
+      backgroundColor: '#FEFFFF',
+      borderStyle: 'black'
+    })
   },
 
   /**

@@ -5,8 +5,7 @@
   <view class="page__bd loginDiv">
     <view >
      <view class='logoDiv'>
-      <image src='../images/logo.png' class="logo" mode="widthFix"></image>
-
+                        
       </view>
     </view>
 

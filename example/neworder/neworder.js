@@ -9,17 +9,11 @@ Page({
     maxUploadCount: 3,
     lock: false,     
     uploadedCount: 0,
-    radioItems: [
-      { name: '合格', value: '合格' },
-      { name: '不合格', value: '不合格'},
-      { name: '未完成', value: '未完成', checked: true },
-      { name: '待定', value: '待定' }
-    ],
     ticketNo: "",
     contractNo: "",
     productNo: "",
     spid: "",
-    product: {
+    order: {
 
     },
     files: [],
@@ -166,6 +160,8 @@ Page({
   },
 
   checkBeforeTap: function () {
+    return "";
+
     let self = this;
     
     if (!utils.isInt(self.data.product.pickCount)) {
@@ -276,6 +272,12 @@ Page({
       })
       return false;
     }
+
+    wx.showToast({
+      title: '保存成功',
+    })
+    return;
+
     var self = this;
     //上传图片，使用对话框提示，图片上传完之后，提交验货结果
     //过滤不需要进行上传的图片

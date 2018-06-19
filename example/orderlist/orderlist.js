@@ -8,8 +8,6 @@ let reset = require('../dataloader').reset
 let moment = require('../lib/moment.js');
 
 Page({
-
-
   /**
    * 页面的初始数据
    */
@@ -27,19 +25,8 @@ Page({
     queryParams: {
       startDate: '',
       endDate: '',
-      ticketNo: '',
-      hasChecked: false,
-      checker: "-1"
-    },
-
-    statusList: [
-      { id: 1, name: '雕刻', isFinished: true },
-      { id: 2, name: '打磨', isFinished: true },
-      { id: 3, name: '油漆', isFinished: true },
-      { id: 4, name: '描字', isFinished: true },
-      { id: 5, name: '发货', isFinished: false },
-      { id: 6, name: '完成', isFinished: false },
-    ]
+      keyword: '',
+    }
   },
 
   removeItem: function (ticketNo) {
@@ -50,7 +37,7 @@ Page({
       if (item.ticketNo == ticketNo) {
         index = i;
       }
-    });
+    }); 
     if (index != -1) {
       items.splice(index, 1);
       this.setData({ items: items });
@@ -61,15 +48,15 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var endDate = new moment().format('YYYY-MM-DD');
-    var startDate = new moment().subtract(30, 'day').format('YYYY-MM-DD');
+    console.log("onLoad")
+    console.log(JSON.stringify(options))
+    var endDate = '2018-12-31';
+    var startDate = '2018-01-01';
     this.setData({
       queryParams: {
         startDate: startDate,
         endDate: endDate,
-        ticketNo: "",
-        hasChecked: false,
-        checker: "-1"
+        keyword: ""
       }
     });
   },
@@ -92,8 +79,14 @@ Page({
     wx.setNavigationBarTitle({
       title: '订单列表',
     })
-  },
 
+    wx.setTabBarStyle({
+      color: "#6d6d6d",
+      selectedColor: '#41a5c6',
+      backgroundColor: '#FEFFFF',
+      borderStyle: 'black'
+    })
+  },
 
   /**
    * 页面上拉触底事件的处理函数
@@ -125,14 +118,14 @@ Page({
   bindItemTap: function(e) {
 
     let id = e.currentTarget.dataset.id;
+    console.log("orerNo = " + id)
     wx.navigateTo({
-      url: '../order/order'
+      url: '../order/order?orderNo='+id
     })
     
   },
 
   bindSearchTap: function (e) {
-    this.data.queryParams.status = this.data.status;
     console.log("in find bindSearchTap:")
     console.log(JSON.stringify(this.data.queryParams))
     wx.navigateTo({
@@ -140,19 +133,22 @@ Page({
     })
   },
 
-  bindStatusTap: function(e) {
-    let id = e.currentTarget.dataset.id;
-    console.log('tap status: ' + id)
-    wx.showModal({
-      title: '设置' + id + '完成?',
-      success: function (res) {
-        if (res.confirm) {
-          console.log('用户点击确定')
-        } else if (res.cancel) {
-          console.log('用户点击取消')
-        }
+
+  changeOrderFlowStatus: function(orderNo, statusName, isFinished) {
+    let orders = this.data.items;
+    for(var i = 0; i < orders.length; i++) {
+      let order = orders[i];
+      if (order.orderNo === orderNo) {
+        order.flow.statusList.forEach( status => {
+          if (status.name === statusName) {
+            status.isFinished = isFinished;
+          }
+        })
+        utils.checkAndSetOrderFinished(order);
+        this.setData({items: orders})
+        break;
       }
-    })
+    }
   }
 
 

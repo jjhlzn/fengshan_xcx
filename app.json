@@ -20,13 +20,7 @@
         "iconPath": "example/images/order_n.png",
         "selectedIconPath": "example/images/order_y.png",
         "text": "订单",
-        "selectedColor": "#41a5c6"
-      },
-      {
-        "pagePath": "example/neworder/neworder",
-        "iconPath": "example/images/add_order_n.png",
-        "selectedIconPath": "example/images/add_order_y.png",
-        "text": "新增",
+        "color": "black",
         "selectedColor": "#41a5c6"
       },
       {
@@ -34,6 +28,7 @@
         "iconPath": "example/images/user_n.png",
         "selectedIconPath": "example/images/user_y.png",
         "text": "我",
+        "color": "black",
         "selectedColor": "#41a5c6"
       }
     ]

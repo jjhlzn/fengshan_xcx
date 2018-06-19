@@ -12,11 +12,14 @@ function handleImageUploadFail() {
 function uploadFiles(files, controller, uploadCompleteHandler) {
   let self = controller;
   self.data.uploadedCount = 0;
-
+  console.log('uploadFiles called')
+  console.log(files)
   if (files.length == 0) {
-    self.uploadCompleteHandler();
+    console.log(files.length)
+    uploadCompleteHandler();
   } else {
     for (var i = 0; i < files.length && i < self.data.maxUploadCount; i++) {
+      console.log("upload: " + i)
       upload(files, i, self, uploadCompleteHandler);
     }
   }
@@ -25,12 +28,12 @@ function uploadFiles(files, controller, uploadCompleteHandler) {
 function upload(files, index, controller, uploadCompleteHandler) {
 
   var self = controller;
-  //console.log("self: " + self);
+  console.log("self: " + self);
   wx.uploadFile({
     url: service.uploadFileUrl(),
     filePath: files[index],
     name: files[index],
-    formData: {}, 
+    formData: {orderNo: controller.data.orderNo, type: "other"}, 
     success: function (res) {
       console.log(res);
       
@@ -52,18 +55,22 @@ function upload(files, index, controller, uploadCompleteHandler) {
         fileName: json.fileNames[0],
         hasAddToDB: false
       }
+      files[index] = json.fileNames[0]
       self.data.addImages.push(newItem);
       self.data.uploadedCount++;
       console.log('完成第' + self.data.uploadedCount + '张');
 
       if (controller.data.uploadImageError ) {
+        console.error("upload error")
         wx.hideLoading();
         return;
       }
 
+      console.log("self.data.uploadedCount: " + self.data.uploadedCount)
+      console.log("files.length: " + files.length)
       if (self.data.uploadedCount == files.length) {
         wx.hideLoading();
-        self.uploadCompleteHandler();
+        uploadCompleteHandler(files);
       } else {
         wx.showLoading({
           title: '上传中( ' + (self.data.uploadedCount + 1) + '/' + files.length + ' )',

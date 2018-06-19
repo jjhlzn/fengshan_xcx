@@ -1,6 +1,6 @@
 class Service {
   constructor() {
-   this.isTest = true;
+   this.isTest = false;
    this.isLocal = false;
    if (this.isLocal) {
      this.http = "http";
@@ -10,7 +10,7 @@ class Service {
    } else { 
     if (this.isTest) {
       this.http = "https";
-      this.host = "xcx.ningboxhw.com";
+      this.host = "xhw.hengdianworld.com";
       this.port = "";
       this.prefix = '.aspx'
     } else {
@@ -30,74 +30,33 @@ class Service {
      return `${this.http}://${this.host}${this.port}/upload${this.prefix}`
    }
 
-   checkProductUrl() {
-     return `${this.http}://${this.host}${this.port}/checkproduct${this.prefix}`
+   getOrdersUrl() {
+     return `${this.http}://${this.host}${this.port}/getorders${this.prefix}`
    }
 
-   checkOrderUrl() {
-     return `${this.http}://${this.host}${this.port}/checkorder${this.prefix}`
+   getOrderInfoUrl() {
+     return `${this.http}://${this.host}${this.port}/getorderinfo${this.prefix}`
    }
 
-   getCheckOrdersUrl() {
-     return `${this.http}://${this.host}${this.port}/getcheckorders${this.prefix}`
+   newOrderUrl() {
+     return `${this.http}://${this.host}${this.port}/neworder${this.prefix}`
    }
 
-   getNotCheckListUrl() {
-     return `${this.http}://${this.host}${this.port}/getnotchecklist${this.prefix}`
+   deleteOrderUrl() {
+     return `${this.http}://${this.host}${this.port}/deleteorder${this.prefix}`
    }
 
-   getCheckListUrl() {
-     return `${this.http}://${this.host}${this.port}/getchecklist${this.prefix}`
+   deleteOrderImageUrl() {
+     return `${this.http}://${this.host}${this.port}/deleteorderimage${this.prefix}`
    }
 
-   getCheckItemUrl() {
-     return `${this.http}://${this.host}${this.port}/getcheckitem${this.prefix}`
-   }
-
-   getCheckFileUrl() {
-     return `${this.http}://${this.host}${this.port}/getcheckfile${this.prefix}`
-   }
-
-   getCheckImagesUrl() {
-     return `${this.http}://${this.host}${this.port}/getcheckimages${this.prefix}`
-   }
-
-   getCheckImageUrl(filename) {
+   getOrderImageUrl(filename) {
      return `${this.http}://${this.host}${this.port}/uploads/${filename}`
    }
 
-   getCheckItemResultUrl() {
-     return `${this.http}://${this.host}${this.port}/getcheckitemresult${this.prefix}`
+   setFlowStatusUrl() {
+     return `${this.http}://${this.host}${this.port}/setflowstatus${this.prefix}`
    }
-
-   getAllCheckersUrl() {
-     return `${this.http}://${this.host}${this.port}/getallcheckers${this.prefix}`
-   }
-
-   assignCheckerUrl() {
-     return `${this.http}://${this.host}${this.port}/assignchecker${this.prefix}`
-   }
-
-   getCheckOrderContractsUrl() {
-     return `${this.http}://${this.host}${this.port}/getcheckordercontracts${this.prefix}`
-   }
-
-   getContractInfoUrl() {
-     return `${this.http}://${this.host}${this.port}/getcontractinfo${this.prefix}`
-   }
-
-   getProductInfoUrl() {
-     return `${this.http}://${this.host}${this.port}/getproductinfo${this.prefix}`
-   }
-
-   getProductsUrl() {
-     return `${this.http}://${this.host}${this.port}/getproducts${this.prefix}`
-   }
-
-   getCheckOrderInfoUrl() {
-     return `${this.http}://${this.host}${this.port}/getcheckorderinfo${this.prefix}`
-   }
-
 
    makeImageUrl(item) {
      console.log("makeImageUrl, item: " + item)

@@ -2,21 +2,25 @@
    
     <view class="page__bd">
 
-        
-        
         <view class="weui-cells__title"> 订单属性 </view>
         <view class="weui-cells weui-cells_after-title">
+          <view class="weui-cell line">
+                <view class="weui-cell__bd">订单编号</view>
+                <view class="weui-cell__ft">
+                 {{order.orderNo}}
+                </view>
+            </view>
             <view class="weui-cell line">
                 <view class="weui-cell__bd">订单名称</view>
                 <view class="weui-cell__ft">
-                 {{product.grossWeight}}
+                 {{order.orderName}}
                 </view>
             </view>
 
             <view class="weui-cell line">
                 <view class="weui-cell__bd">金额</view>
                 <view class="weui-cell__ft">
-                  {{product.grossWeight}}
+                  {{order.amount}}
                 </view>
             </view>
 
@@ -25,7 +29,7 @@
                   <view class="weui-label">下单日期</view>
               </view>
               <view class="weui-cell__ft">
-                  2018-03-01
+                  {{order.orderDate}}
               </view>
             </view>
 
@@ -34,36 +38,46 @@
                   <view class="weui-label">交货日期</view>
               </view>
               <view class="weui-cell__ft">
-                  2018-03-01
+                  {{order.deliveryDate}}
               </view>
             </view>
 
         </view>
 
-         <view class="weui-cells__title">备注</view>
+        <view class="weui-cells__title"> 进度 </view>
         <view class="weui-cells weui-cells_after-title">
-            <view class="weui-cell">
-                <view class="weui-cell__bd">
-                    这是备注信息
+          <scroll-view class="scroll-view_H" scroll-x >
+            <view  wx:for="{{order.flow.statusList}}" wx:key="status_{{index}}"  class=" scroll-view-item_H bc_green">     
+              <view class="flex-row flex-row-attrs">
+                <view class="flex-column flex-column-attrs checkItemCellLeft">
+                  <image data-id="{{item.name}}" bindtap='bindStatusTap' src="../images/{{item.isFinished ? 'blue.png' : 'gray.png'}}" class="status-image flex-view-item"></image>
+                  <view class='status-txt flex-view-item'>{{item.name}}</view>
                 </view>
+
+                <view class="flex-view-item checkItemCellRight" wx:if="{{item.name != '完成'}}"> 
+                    <image  src='../images/arrow.png' class="arrow-image"></image>
+                </view>
+              </view>  
+              
             </view>
+            
+          </scroll-view>
         </view>
 
 
-        <view class="weui-cells__title">附件</view>
+        <view class="weui-cells__title">进度跟踪图片</view>
         <view class="weui-cells weui-cells_after-title">
-            <view class="weui-cell">
+            <view class="weui-cell fileline">
                 <view class="weui-uploader__bd">
                             <view class="weui-uploader__files" id="uploaderFiles">
                                  <block wx:for="{{files}}" wx:key="*this">
-                                    <view class="weui-uploader__file" bindtouchend='touchend' bindlongtap='bindLongImageTap' bindtap="previewImage" id="image_{{index}}">
+                                    <view class="weui-uploader__file" bindtouchend='touchend' bindlongpress='bindLongImageTap' bindtap="previewImage" id="image_{{index}}">
                                         <image  class="weui-uploader__img" src="{{item}}" mode="aspectFill" />
                                     </view>
                                 </block>
-
-                              <view class="weui-uploader__input-box">
-                                <view class="weui-uploader__input" bindtap="chooseImage"></view>
-                              </view>
+                                <view class="weui-uploader__input-box">
+                                  <view class="weui-uploader__input" bindtap="chooseImage"></view>
+                                </view>
                             </view>
                             
                         </view>
