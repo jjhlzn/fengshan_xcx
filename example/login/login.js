@@ -30,7 +30,7 @@ Page({
    */
   onShow: function () {
     wx.setNavigationBarTitle({
-      title: '风尚订单系统'
+      title: '东阳尚方订单系统'
     })
   },
 

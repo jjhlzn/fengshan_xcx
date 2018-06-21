@@ -3,6 +3,10 @@
   height: 26px;
 }
 
+.addessLine {
+  height: 60px;
+}
+
 .scroll-view_H{
   width: 100%;
   white-space: nowrap;

@@ -58,6 +58,8 @@ Page({
 
         //order.contentImages = order.contentImages.map(file => service.getOrderImageUrl(file));
         order.otherImages = order.otherImages.map(file => service.getOrderImageUrl(file));
+        order.contentImages = order.contentImages.map(file => service.getOrderImageUrl(file));
+        order.templateImages = order.templateImages.map(file => service.getOrderImageUrl(file));
 
         self.data.files = order.otherImages
 
@@ -107,6 +109,32 @@ Page({
     wx.previewImage({
       current: this.data.files[index], // 当前显示图片的http链接
       urls: this.data.files // 需要预览的图片http链接列表
+    })
+  },
+
+  previewImageContent: function (e) {
+    if (this.data.lock) {
+      return;
+    }
+    let id = e.currentTarget.id;
+    let index = parseInt(id.replace('image_', ''));
+    console.log("index = " + index);
+    wx.previewImage({
+      current: this.data.order.contentImages[index], // 当前显示图片的http链接
+      urls: this.data.order.contentImages // 需要预览的图片http链接列表
+    })
+  },
+
+  previewImageTemplate: function (e) {
+    if (this.data.lock) {
+      return;
+    }
+    let id = e.currentTarget.id;
+    let index = parseInt(id.replace('image_', ''));
+    console.log("index = " + index);
+    wx.previewImage({
+      current: this.data.order.templateImages[index], // 当前显示图片的http链接
+      urls: this.data.order.templateImages // 需要预览的图片http链接列表
     })
   },
 

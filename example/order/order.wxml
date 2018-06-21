@@ -18,13 +18,6 @@
             </view>
 
             <view class="weui-cell line">
-                <view class="weui-cell__bd">金额</view>
-                <view class="weui-cell__ft">
-                  {{order.amount}}
-                </view>
-            </view>
-
-            <view class="weui-cell line">
                 <view class="weui-cell__bd">
                   <view class="weui-label">下单日期</view>
               </view>
@@ -39,6 +32,96 @@
               </view>
               <view class="weui-cell__ft">
                   {{order.deliveryDate}}
+              </view>
+            </view>
+
+            <view class="weui-cell line">
+                <view class="weui-cell__bd">
+                  <view class="weui-label">淘宝ID</view>
+              </view>
+              <view class="weui-cell__ft">
+                  {{order.taobaoId}}
+              </view>
+            </view>
+
+            <view class="weui-cell line">
+                <view class="weui-cell__bd">
+                  <view class="weui-label">接单人</view>
+              </view>
+              <view class="weui-cell__ft">
+                  {{order.receiveOrderPerson}}
+              </view>
+            </view>
+
+            <view class="weui-cell line">
+                <view class="weui-cell__bd">
+                  <view class="weui-label">款式</view>
+              </view>
+              <view class="weui-cell__ft">
+                  {{order.style}}
+              </view>
+            </view>
+
+            <view class="weui-cell line">
+                <view class="weui-cell__bd">
+                  <view class="weui-label">雕刻方式</view>
+              </view>
+              <view class="weui-cell__ft">
+                  {{order.carveStyle}}
+              </view>
+            </view>
+
+            <view class="weui-cell line">
+                <view class="weui-cell__bd">
+                  <view class="weui-label">材质</view>
+              </view>
+              <view class="weui-cell__ft">
+                  {{order.material}}
+              </view>
+            </view>
+
+            <view class="weui-cell line">
+                <view class="weui-cell__bd">
+                  <view class="weui-label">尺寸</view>
+              </view>
+              <view class="weui-cell__ft">
+                  {{order.size}}
+              </view>
+            </view>
+
+            <view class="weui-cell line">
+                <view class="weui-cell__bd">
+                  <view class="weui-label">颜色</view>
+              </view>
+              <view class="weui-cell__ft">
+                  {{order.color}}
+              </view>
+            </view>
+            
+            <view class="weui-cell line">
+                <view class="weui-cell__bd">
+                  <view class="weui-label">物流方式</view>
+              </view>
+              <view class="weui-cell__ft">
+                  {{order.deliveryCompany}} - {{order.deliveryPayType}} - {{order.deliveryPackage}} 
+              </view>
+            </view>
+
+            <view class="weui-cell">
+                <view class="weui-cell__bd">
+                  <view class="weui-label">收货人</view>
+              </view>
+              <view class="weui-cell__ft">
+                  {{order.address}}
+              </view>
+            </view>
+
+            <view class="weui-cell">
+                <view class="weui-cell__bd">
+                  <view class="weui-label">备注</view>
+              </view>
+              <view class="weui-cell__ft">
+                  {{order.memo}}
               </view>
             </view>
 
@@ -62,6 +145,40 @@
             </view>
             
           </scroll-view>
+        </view>
+
+        <view class="weui-cells__title">内容图片</view>
+        <view class="weui-cells weui-cells_after-title">
+            <view class="weui-cell fileline">
+                <view class="weui-uploader__bd">
+                            <view class="weui-uploader__files" id="uploaderFiles">
+                                 <block wx:for="{{order.contentImages}}" wx:key="*this">
+                                    <view class="weui-uploader__file" bindtouchend='touchend' bindtap="previewImageContent" id="image_{{index}}">
+                                        <image  class="weui-uploader__img" src="{{item}}" mode="aspectFill" />
+                                    </view>
+                                </block>
+                               
+                            </view>
+                            
+                        </view>
+            </view>
+        </view>
+
+<view class="weui-cells__title">样板图片</view>
+        <view class="weui-cells weui-cells_after-title">
+            <view class="weui-cell fileline">
+                <view class="weui-uploader__bd">
+                            <view class="weui-uploader__files" id="uploaderFiles">
+                                 <block wx:for="{{order.templateImages}}" wx:key="*this">
+                                    <view class="weui-uploader__file" bindtouchend='touchend'  bindtap="previewImageTemplate" id="image_{{index}}">
+                                        <image  class="weui-uploader__img" src="{{item}}" mode="aspectFill" />
+                                    </view>
+                                </block>
+                                
+                            </view>
+                            
+                        </view>
+            </view>
         </view>
 
 
