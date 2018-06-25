@@ -1,0 +1,44 @@
+<!--search.wxml-->
+<view class="page" xmlns:wx="http://www.w3.org/1999/xhtml">
+    <view class="page__bd">
+
+         <view class="weui-cells__title"> 总体订单统计 </view>
+        <view class="weui-cells weui-cells_after-title topview">
+            <view  class="flex-row flex-row-attrs" >
+              <view id="notFinishedOrderDiv"  class="flex-view-item reportItemDiv">
+                <view class="flex-view-item name-txt">未完成订单数</view>
+                <view class="flex-view-item name-txt" id="notFinishedOrder">{{notFinishedOrder}}</view>
+              </view>
+
+              <view id="timeoutOrderDiv" class="flex-view-item reportItemDiv" style=''> 
+                 <view class="flex-view-item name-txt">超时订单数</view>
+                <view class="flex-view-item name-txt" id="timeoutOrder">{{timeOutOrder}}</view>
+              </view>
+            </view>  
+        </view>
+
+        <view class="weui-cells__title"> 客服订单统计 </view>
+        <view class="weui-cells weui-cells_after-title">
+
+  
+
+            <view  class="flex-row flex-row-attrs weui-cell"  wx:for="{{peopleOrders}}" wx:key="item_{{index}}">
+              <view  class="flex-view-item "  style='width: 40%; text-align: left;'>
+                <view class="flex-view-item ">{{item.name}}</view>
+              </view>
+              <view  class="flex-view-item " style='width: 20%; text-align: right;'>
+                <view class="flex-view-item smallNotFinishedOrder">{{item.notFinishedOrder}}</view>
+              </view>
+              <view  class="flex-view-item " style='width: 36%; text-align: right;'>
+                <view class="flex-view-item smallTimeoutOrder">{{item.timeoutOrder}}</view>
+              </view>
+
+             </view>
+    
+
+
+        </view>
+
+    </view>
+
+</view>

@@ -13,6 +13,16 @@ Page({
     startDate: '',
     endDate: '',
     keyword: "",
+    isShowFinished: false,
+    statuses: [{ name: '未完成', value: 0 },
+    { name: '全部', value: 1 }
+    ],
+    statusNames: [
+      '未完成',
+      '全部',
+    ],
+    statusIndex: 0,
+    
   },
 
   loadData: function () {
@@ -35,7 +45,9 @@ Page({
       this.setData({
         startDate: queryParams.startDate,
         endDate: queryParams.endDate,
-        keyword: queryParams.keyword
+        keyword: queryParams.keyword,
+        isShowFinished: queryParams.isShowFinished,
+        statusIndex: queryParams.isShowFinished ? 1 : 0
       });
     } else {
       var endDate = '2018-12-31';
@@ -44,6 +56,7 @@ Page({
         startDate: startDate,
         endDate: endDate,
         keyword: "",
+        isShowFinished: false,
       });
     }
     
@@ -80,8 +93,13 @@ Page({
       endDate: e.detail.value
     })
   },
-
-
+  bindStatusChange: function(e) {
+    console.log(e.detail.value)
+    this.setData({
+      isShowFinished: e.detail.value == 1,
+      statusIndex: e.detail.value
+    })
+  },
 
   bindSearchTap: function() {
 
@@ -89,8 +107,10 @@ Page({
         startDate: this.data.startDate,
         endDate: this.data.endDate,
         keyword: this.data.keyword,
+        isShowFinished: this.data.isShowFinished,
         isBackFromSearch: true
     });
+
     console.log("before wx.switchTab")
     let url = "../orderlist/orderlist";
   

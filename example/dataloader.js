@@ -1,5 +1,6 @@
 let service = require('./service').Service
 let utils = require('./utils.js').utils;
+const moment = require('./moment.js');
 
 let getMoreData = function (page) {
   let self = page;
@@ -36,17 +37,20 @@ let loadData = function (page, pageNo) {
 
   self.setData({ loading: true });
   self.data.loading = true;
+  let queryParams = {
+    pageNo: self.data.request.pageNo,
+    pageSize: self.data.request.pageSize,
+    startDate: self.data.queryParams.startDate,
+    endDate: self.data.queryParams.endDate,
+    keyword: self.data.queryParams.keyword,
+    isShowFinished: self.data.queryParams.isShowFinished,
+    username: utils.getMyUserName()
+  }
+  console.log(JSON.stringify(queryParams))
   wx.request({
     url: service.getOrdersUrl(),
     method: 'POST',
-    data: {
-      pageNo: self.data.request.pageNo,
-      pageSize: self.data.request.pageSize,
-      startDate: self.data.queryParams.startDate,
-      endDate: self.data.queryParams.endDate,
-      keyword: self.data.queryParams.keyword,
-      username: utils.getMyUserName()
-    },
+    data: queryParams,
     header: {
       'content-type': 'application/json'
     },
@@ -54,6 +58,24 @@ let loadData = function (page, pageNo) {
       let items = self.data.items;
       items.push.apply(items, res.data.items);
       console.log("res:", res);
+
+      items.forEach((item) => {
+        let statusList = item.flow.statusList;
+        statusList.forEach((status) => {
+          if (status.name == '完成' && status.isFinished) {
+            item.isFinished = true
+          }
+        })
+
+        let today = moment().format('YYYY-MM-DD');
+        if (!item.isFinished) {
+          if (item.deliveryDate < today) {
+            item.isTimeout = true;
+          }
+        }
+      })
+
+
       self.setData({ items: items, totalCount: res.data.totalCount });
       if (items.length === res.data.totalCount) {
         self.setData({ isLoadAll: true });

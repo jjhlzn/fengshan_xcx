@@ -5,7 +5,7 @@
                 <view class="weui-search-bar__box">
                     <icon class="weui-icon-search_in-box" type="search" size="14"></icon>
                     <input type="text" class="weui-search-bar__input" placeholder="搜索" value="{{inputVal}}" focus="{{inputShowed}}" bindinput="inputTyping" />
-                    <view class="weui-icon-clear" wx:if="{{inputVal.length > 0}}" bindtap="clearInput">
+                    <view class="weui-icon-clear " wx:if="{{inputVal.length > 0}}" bindtap="clearInput">
                         <icon type="clear" size="14"></icon>
                     </view> 
                 </view>
@@ -22,13 +22,13 @@
                  
                  <!-- 每个列表项 -->  
                 <view  data-id="{{item.orderNo}}"  class="weui-media-box weui-media-box_text" wx:for="{{items}}" wx:key="item_{{index}}">     
-                    <view  data-id="{{item.orderNo}}" bindtap='bindItemTap'  class="flex-row flex-row-attrs" >
-                      <view class="flex-column flex-column-attrs  ">
-                        <view class="flex-view-item name-txt">{{item.orderName}} </view>
-                        <view class="flex-view-item number-txt">{{item.orderNo}}</view>
+                    <view  data-id="{{item.orderNo}}" bindtap='bindItemTap'  class="flex-row flex-row-attrs {{item.isTimeout ? 'timeoutOrder' : ''}} {{item.isFinished ? 'finishedOrder' : ''}}" >
+                      <view class="flex-column flex-column-attrs  " >
+                        <view class=" name-txt">{{item.orderName}} </view>
+                        <view class=" number-txt">{{item.orderNo}}</view>
                       </view>
 
-                      <view class="flex-view-item checkItemCellRight" style=''> 
+                      <view class=" " style=''> 
                         <image src='../images/forword.png' class="forword-image"></image>
                        </view>
                     </view>  
@@ -60,7 +60,7 @@
                   </view>
 
                   <view class="weui-loadmore weui-loadmore_line loadAllCell" wx:if="{{!loading && isLoadAll && totalCount != 0}}">
-                    <view class="weui-loadmore__tips weui-loadmore__tips_in-line">已加载完毕</view>
+                    <view class="weui-loadmore__tips weui-loadmore__tips_in-line">已加载完{{totalCount}}条数据</view>
                   </view>
                 </view>
             </view>

@@ -58,6 +58,10 @@ class Service {
      return `${this.http}://${this.host}${this.port}/setflowstatus${this.prefix}`
    }
 
+   getReportUrl() {
+     return `${this.http}://${this.host}${this.port}/report${this.prefix}`
+   }
+
    makeImageUrl(item) {
      console.log("makeImageUrl, item: " + item)
      if (item.fileName)

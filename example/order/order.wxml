@@ -4,20 +4,24 @@
 
         <view class="weui-cells__title"> 订单属性 </view>
         <view class="weui-cells weui-cells_after-title">
-          <view class="weui-cell line">
-                <view class="weui-cell__bd">订单编号</view>
+          <view class="weui-cell ">
+                <view class="weui-cell__bd">
+                  <view class="weui-label">订单编号</view>
+                </view>
                 <view class="weui-cell__ft">
                  {{order.orderNo}}
                 </view>
             </view>
-            <view class="weui-cell line">
-                <view class="weui-cell__bd">订单名称</view>
+            <view class="weui-cell ">
+                <view class="weui-cell__bd">
+                  <view class="weui-label">订单名称</view>
+                </view>
                 <view class="weui-cell__ft">
                  {{order.orderName}}
                 </view>
             </view>
 
-            <view class="weui-cell line">
+            <view class="weui-cell ">
                 <view class="weui-cell__bd">
                   <view class="weui-label">下单日期</view>
               </view>
@@ -26,7 +30,7 @@
               </view>
             </view>
 
-            <view class="weui-cell line">
+            <view class="weui-cell ">
                 <view class="weui-cell__bd">
                   <view class="weui-label">交货日期</view>
               </view>
@@ -35,7 +39,7 @@
               </view>
             </view>
 
-            <view class="weui-cell line">
+            <view class="weui-cell ">
                 <view class="weui-cell__bd">
                   <view class="weui-label">淘宝ID</view>
               </view>
@@ -44,7 +48,7 @@
               </view>
             </view>
 
-            <view class="weui-cell line">
+            <view class="weui-cell ">
                 <view class="weui-cell__bd">
                   <view class="weui-label">接单人</view>
               </view>
@@ -53,7 +57,7 @@
               </view>
             </view>
 
-            <view class="weui-cell line">
+            <view class="weui-cell ">
                 <view class="weui-cell__bd">
                   <view class="weui-label">款式</view>
               </view>
@@ -62,7 +66,7 @@
               </view>
             </view>
 
-            <view class="weui-cell line">
+            <view class="weui-cell ">
                 <view class="weui-cell__bd">
                   <view class="weui-label">雕刻方式</view>
               </view>
@@ -71,7 +75,7 @@
               </view>
             </view>
 
-            <view class="weui-cell line">
+            <view class="weui-cell ">
                 <view class="weui-cell__bd">
                   <view class="weui-label">材质</view>
               </view>
@@ -80,7 +84,7 @@
               </view>
             </view>
 
-            <view class="weui-cell line">
+            <view class="weui-cell ">
                 <view class="weui-cell__bd">
                   <view class="weui-label">尺寸</view>
               </view>
@@ -89,7 +93,7 @@
               </view>
             </view>
 
-            <view class="weui-cell line">
+            <view class="weui-cell ">
                 <view class="weui-cell__bd">
                   <view class="weui-label">颜色</view>
               </view>
@@ -98,7 +102,7 @@
               </view>
             </view>
             
-            <view class="weui-cell line">
+            <view class="weui-cell ">
                 <view class="weui-cell__bd">
                   <view class="weui-label">物流方式</view>
               </view>
@@ -118,9 +122,9 @@
 
             <view class="weui-cell">
                 <view class="weui-cell__bd">
-                  <view class="weui-label">备注</view>
+                  <view class="weui-label" >备注</view>
               </view>
-              <view class="weui-cell__ft">
+              <view class="weui-cell__ft specialLine" >
                   {{order.memo}}
               </view>
             </view>
@@ -182,7 +186,7 @@
         </view>
 
 
-        <view class="weui-cells__title">进度跟踪图片</view>
+        <view class="weui-cells__title">进度跟踪图片<span style="margin-left: 10px;">{{"（"+order.otherImageUpdateTime+"）"}}</span></view>
         <view class="weui-cells weui-cells_after-title">
             <view class="weui-cell fileline">
                 <view class="weui-uploader__bd">

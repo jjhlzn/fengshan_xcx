@@ -55,3 +55,7 @@
 .flex-column-attrs {
   display: flex; flex-direction: column; align-items: left; justify-content: space-between;
 }
+
+.specialLine {
+  color: red;
+}

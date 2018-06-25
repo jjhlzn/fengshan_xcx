@@ -11,7 +11,8 @@
     "example/notcompletelist/notcompletelist",
     "example/contractsofitem/contractsofitem",
     "example/contractsofitem2/contractsofitem2",
-    "example/order/order"
+    "example/order/order",
+    "example/report/report"
   ],
   "tabBar": {
     "list": [
@@ -20,6 +21,14 @@
         "iconPath": "example/images/order_n.png",
         "selectedIconPath": "example/images/order_y.png",
         "text": "订单",
+        "color": "black",
+        "selectedColor": "#41a5c6"
+      },
+      {
+        "pagePath": "example/report/report",
+        "iconPath": "example/images/tongji_n.png",
+        "selectedIconPath": "example/images/tongji_y.png",
+        "text": "统计",
         "color": "black",
         "selectedColor": "#41a5c6"
       },

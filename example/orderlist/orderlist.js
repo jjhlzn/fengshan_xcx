@@ -8,7 +8,7 @@ let reset = require('../dataloader').reset
 let moment = require('../lib/moment.js');
 
 Page({
-  /**
+  /** 
    * 页面的初始数据
    */
   data: {
@@ -26,6 +26,10 @@ Page({
       startDate: '',
       endDate: '',
       keyword: '',
+      isShowFinished: false
+    }, 
+    isTimeoutOrder:  function() {
+      return true
     }
   },
 
@@ -56,7 +60,8 @@ Page({
       queryParams: {
         startDate: startDate,
         endDate: endDate,
-        keyword: ""
+        keyword: "",
+        isShowFinished: false
       }
     });
   },
@@ -139,11 +144,27 @@ Page({
     for(var i = 0; i < orders.length; i++) {
       let order = orders[i];
       if (order.orderNo === orderNo) {
-        order.flow.statusList.forEach( status => {
+        var sequence = 0;
+        console.log('find orderNo: ' + orderNo)
+        order.flow.statusList.forEach(status => {
           if (status.name === statusName) {
-            status.isFinished = isFinished;
+            sequence = status.sequence;
           }
         })
+        console.log('sequence = ' + sequence)
+        if (isFinished) {
+          order.flow.statusList.forEach(status => {
+            if (status.sequence <= sequence) {
+              status.isFinished = isFinished;
+            }
+          })
+        } else {
+          order.flow.statusList.forEach(status => {
+            if (status.sequence >= sequence) {
+              status.isFinished = isFinished;
+            }
+          })
+        }
         utils.checkAndSetOrderFinished(order);
         this.setData({items: orders})
         break;

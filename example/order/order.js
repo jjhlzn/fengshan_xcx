@@ -2,6 +2,8 @@
 let service = require('../service').Service;
 let utils = require('../utils').utils;
 let uploadFiles = require('../logic/upload').uploadFiles;
+const timeago = require('../timeago');
+const moment = require('../moment')
 
 Page({
 
@@ -26,6 +28,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    
     console.log(JSON.stringify(options))
     this.setData({ orderNo: options.orderNo});
 
@@ -62,6 +65,13 @@ Page({
         order.templateImages = order.templateImages.map(file => service.getOrderImageUrl(file));
 
         self.data.files = order.otherImages
+
+        if (order.otherImageUpdateTime) {
+          moment.locale('zh-cn')
+          order.otherImageUpdateTime = "更新于 " + moment(order.otherImageUpdateTime, "YYYY-MM-DD hh:mm:ss").fromNow()
+        } else {
+          order.otherImageUpdateTime = "未更新";
+        }
 
         self.setData({
           order: order,
@@ -268,11 +278,25 @@ Page({
   /* 设置订单的某个状态是否完成 */
   setOrderFlowStatusIsFinished: function(name, isFinished) {
     var order = this.data.order;
+    var sequence = 0;
     order.flow.statusList.forEach(status => {
       if (status.name === name) {
-        status.isFinished = isFinished;
+        sequence = status.sequence;
       }
     })
+    if (isFinished) {
+      order.flow.statusList.forEach(status => {
+        if (status.sequence <= sequence) {
+           status.isFinished = isFinished;
+        }
+      })
+    } else {
+      order.flow.statusList.forEach(status => {
+        if (status.sequence >= sequence) {
+          status.isFinished = isFinished;
+        }
+      })
+    }
     utils.checkAndSetOrderFinished(this.data.order);
     this.setData({order: order})
   },
